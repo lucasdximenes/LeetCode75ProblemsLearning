@@ -13,27 +13,26 @@ public class Solution {
     }
 
     public static int pivotIndex(int[] nums) {
+        int totalSum = 0;
+        for (int num : nums) {
+            totalSum += num;
+        }
+
         int leftSum = 0;
-        int rightSum = 0;
+        int rightSum = totalSum;
         int pivot = -1;
+
         for (int i = 0; i < nums.length; i++) {
-            // leftSum
-            for (int j = i - 1; j >= 0; j--) {
-                leftSum += nums[j];
-            }
-            // rightSum
-            for (int j = i + 1; j < nums.length; j++) {
-                rightSum += nums[j];
-            }
+            rightSum -= nums[i];
 
             if (leftSum == rightSum) {
                 pivot = i;
                 break;
-            } else {
-                leftSum = 0;
-                rightSum = 0;
             }
+
+            leftSum += nums[i];
         }
+
         return pivot;
     }
 }
