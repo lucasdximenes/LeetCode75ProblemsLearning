@@ -19,19 +19,23 @@ public class Solution {
     }
 
     public static String mergeAlternately(String word1, String word2) {
-        int word1Pointer = 0;
-        int word2Pointer = 0;
-        StringBuilder mergedString = new StringBuilder();
-        while (word1.length() != word1Pointer || word2.length() != word2Pointer) {
-            if (word1Pointer != word1.length()) {
-                mergedString.append(word1.charAt(word1Pointer));
-                word1Pointer++;
-            }
-            if (word2Pointer != word2.length()) {
-                mergedString.append(word2.charAt(word2Pointer));
-                word2Pointer++;
-            }
+        StringBuilder merged = new StringBuilder();
+        int word1p = 0;
+        int word2p = 0;
+
+        while (word1p < word1.length() && word2p < word2.length()) {
+            merged.append(word1.charAt(word1p++));
+            merged.append(word2.charAt(word2p++));
         }
-        return mergedString.toString();
+
+        while (word1p < word1.length()) {
+            merged.append(word1.charAt(word1p++));
+        }
+
+        while (word2p < word2.length()) {
+            merged.append(word2.charAt(word2p++));
+        }
+
+        return merged.toString();
     }
 }
